@@ -1,0 +1,127 @@
+$background: #222;
+$foreground: #bbb;
+$colors: (
+  // onedark
+  red: #e06c75,
+  green: #98c379,
+  blue: #61afef,
+  yellow: #e5c07b,
+  magenta: #c678dd,
+  cyan: #56b6c2
+);
+
+@mixin header-colors {
+  $primitives: (
+    h1: red,
+    h2: cyan,
+  );
+
+  @each $tag, $color-name in $primitives {
+    $hex: map-get($colors, $color-name);
+
+    #{$tag} {
+      color: $hex;
+
+      &::before {
+        background-color: $hex;
+      }
+    }
+  }
+
+  $sections: (
+    professional: blue,
+    work: yellow,
+    personal: magenta,
+  );
+
+  @each $name, $color-name in $sections {
+    $hex: map-get($colors, $color-name);
+
+    .section.#{$name} h3 {
+      & > a {
+        color: $hex;
+      }
+
+      &::before {
+        background-color: $hex;
+      }
+    }
+  }
+}
+
+@mixin headers {
+  .section {
+    margin-top: 2rem;
+  }
+
+  @for $i from 1 through 6 {
+    $left-offset: calc(1ch * $i);
+
+    h#{$i} {
+      &,
+      & > a {
+        line-height: 1;
+      }
+
+      margin: 0.5rem 0;
+      vertical-align: middle;
+      font-weight: bold;
+      text-transform: uppercase;
+      position: relative;
+      padding-left: $left-offset;
+      text-indent: 0.5ch;
+
+      // compensate the fact that weight 600 is too little and weight 700 is too much
+      letter-spacing: 1.5px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        height: 100%;
+        width: $left-offset;
+      }
+    }
+  }
+}
+
+:root {
+  font-size: 16px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-size: 12pt;
+  font-family: 'Red Hat Mono', monospace;
+  box-sizing: border-box;
+  line-height: 1.4;
+  color: $foreground;
+}
+
+body {
+  height: 100vh;
+  background-color: $background;
+}
+
+#content {
+  height: 100%;
+  padding: 1rem;
+
+  $reading-width: 768px; // same as 80ch
+  width: $reading-width; // desktop
+
+  // mobile
+  @media (max-width: $reading-width) {
+    width: 100%;
+  }
+
+  & > main > article {
+    @include headers;
+    @include header-colors;
+
+    p {
+      margin-left: 1ch;
+    }
+  }
+}
