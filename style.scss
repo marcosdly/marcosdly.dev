@@ -45,16 +45,6 @@ $colors: (
       &::before {
         background-color: $hex;
       }
-
-      &::after {
-        $interpolation: cubic-bezier(0.2, 0.55, 0.46, 1.07);
-        transition: background 1s $interpolation;
-        background: linear-gradient(to right, $hex, transparent);
-      }
-
-      &:hover::after {
-        background-position-x: -20ch;
-      }
     }
   }
 }
@@ -62,6 +52,26 @@ $colors: (
 @mixin headers {
   .section {
     margin-top: 2rem;
+
+    h3 {
+      $interpolation: cubic-bezier(0.2, 0.55, 0.46, 1.07);
+      $animated-left-offset: 7ch; // +1 than possible width for h6
+      $duration: 300ms;
+
+      transition: padding-left $duration $interpolation;
+
+      &:hover {
+        padding-left: $animated-left-offset;
+      }
+
+      &::before {
+        transition: width $duration $interpolation;
+      }
+
+      &:hover::before {
+        width: $animated-left-offset;
+      }
+    }
   }
 
   @for $i from 1 through 6 {
@@ -91,16 +101,6 @@ $colors: (
         left: 0;
         height: 100%;
         width: $left-offset;
-      }
-
-      &::after {
-        content: '';
-        position: absolute;
-        bottom: -5px;
-        left: 0;
-        width: 100%;
-        height: 1px;
-        pointer-events: none;
       }
     }
   }
