@@ -51,14 +51,18 @@ $colors: (
 
 @mixin headers {
   .section {
-    margin-top: 2rem;
+    & {
+      margin-top: 2rem;
+    }
 
     h3 {
       $interpolation: cubic-bezier(0.2, 0.55, 0.46, 1.07);
       $animated-left-offset: 7ch; // +1 than possible width for h6
       $duration: 300ms;
 
-      transition: padding-left $duration $interpolation;
+      & {
+        transition: padding-left $duration $interpolation;
+      }
 
       &:hover {
         padding-left: $animated-left-offset;
@@ -78,6 +82,15 @@ $colors: (
     $left-offset: calc(1ch * $i);
 
     h#{$i} {
+      & {
+        margin: 0.5rem 0;
+        vertical-align: middle;
+        position: relative;
+        font-weight: normal;
+        padding-left: $left-offset;
+        text-indent: 0.5ch;
+      }
+
       &,
       & > a {
         line-height: 1;
@@ -87,13 +100,6 @@ $colors: (
       & > a {
         display: block;
       }
-
-      margin: 0.5rem 0;
-      vertical-align: middle;
-      position: relative;
-      font-weight: normal;
-      padding-left: $left-offset;
-      text-indent: 0.5ch;
 
       &::before {
         content: '';
@@ -135,15 +141,17 @@ body {
 }
 
 #content {
-  height: 100%;
-  padding: 1rem;
+  & {
+    height: 100%;
+    padding: 1rem;
 
-  $reading-width: 768px; // same as 80ch
-  width: $reading-width; // desktop
+    $reading-width: 768px; // same as 80ch
+    width: $reading-width; // desktop
 
-  // mobile
-  @media (max-width: $reading-width) {
-    width: 100%;
+    // mobile
+    @media (max-width: $reading-width) {
+      width: 100%;
+    }
   }
 
   & > main > article {
