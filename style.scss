@@ -36,14 +36,23 @@ $colors: (
 
   @each $name, $color-name in $sections {
     $hex: map-get($colors, $color-name);
+    $hex-light: scale-color($hex, $lightness: 30%);
 
     .section.#{$name} h3 {
       & > a {
         color: $hex;
       }
 
+      & > a:hover {
+        color: $hex-light;
+      }
+
       &::before {
         background-color: $hex;
+      }
+
+      &:hover::before {
+        background-color: $hex-light;
       }
     }
   }
