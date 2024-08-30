@@ -50,6 +50,13 @@ $colors: (
 }
 
 @mixin headers {
+  $max-indentation: 4ch;
+  $indentation: (
+    h1: 1.5ch,
+    h2: 2.5ch,
+    h3: 0.5ch,
+  );
+
   .section {
     & {
       margin-top: 2rem;
@@ -57,8 +64,7 @@ $colors: (
 
     h3 {
       $interpolation: cubic-bezier(0.2, 0.55, 0.46, 1.07);
-      $animated-left-offset: 7ch; // +1 than possible width for h6
-      $duration: 300ms;
+      $duration: 250ms;
 
       & {
         transition: padding-left $duration $interpolation;
@@ -66,7 +72,7 @@ $colors: (
       }
 
       &:hover {
-        padding-left: $animated-left-offset;
+        padding-left: $max-indentation;
       }
 
       &::before {
@@ -74,7 +80,7 @@ $colors: (
       }
 
       &:hover::before {
-        width: $animated-left-offset;
+        width: $max-indentation;
       }
     }
   }
@@ -117,14 +123,12 @@ $colors: (
     letter-spacing: 1.5px;
   }
 
-  @for $i from 1 through 3 {
-    $left-offset: calc(1ch * $i);
-
-    h#{$i} {
-      padding-left: $left-offset;
+  @each $tag, $size in $indentation {
+    #{$tag} {
+      padding-left: $size;
 
       &::before {
-        width: $left-offset;
+        width: $size;
       }
     }
   }
