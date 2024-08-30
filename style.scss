@@ -163,28 +163,25 @@ body {
   background-color: $background;
 }
 
-#content {
-  & {
-    padding: 1rem;
-    margin: 0 auto;
+#root {
+  padding: 1rem;
+  margin: 0 auto;
 
-    $reading-width: 768px; // same as 80ch
-    width: $reading-width; // desktop
+  $reading-width: 768px; // same as 80ch
+  width: $reading-width; // desktop
 
-    // mobile
-    @media (max-width: $reading-width) {
-      width: 100%;
-    }
-  }
-
-  & > main > article {
-    @include headers;
-    @include header-colors;
+  // mobile
+  @media (max-width: $reading-width) {
+    width: 100%;
   }
 }
 
-#main-header,
-#main-footer {
+#content {
+  @include headers;
+  @include header-colors;
+}
+
+.nav-container {
   & {
     padding: 1ch 0;
     text-align: center;
