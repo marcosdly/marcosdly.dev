@@ -1,5 +1,6 @@
 $background: #222;
 $foreground: #bbb;
+$foreground-light: scale-color($foreground, $lightness: 30%);
 $colors: (
   // onedark
   red: #e06c75,
@@ -201,7 +202,7 @@ body {
   a {
     text-transform: lowercase;
     text-decoration: none;
-    color: scale-color($foreground, $lightness: 30%);
+    color: $foreground-light;
   }
 
   a:hover {
@@ -226,5 +227,65 @@ ul {
 
   li::before {
     content: '> ';
+  }
+}
+
+$max-position: 10000%;
+$duration: 40s;
+
+@keyframes background-carroussel {
+  from {
+    background-position: 0;
+  }
+
+  to {
+    background-position: $max-position;
+  }
+}
+
+.brazilian-btw {
+  $green: rgba(0, 148, 64, 1);
+  $yellow: rgba(255, 203, 0, 1);
+  $blue: rgba(48, 38, 129, 1);
+  $white: #fff;
+
+  // list item <li>
+  &::before {
+    color: $foreground-light;
+  }
+
+  & p {
+    position: relative;
+    display: inline;
+    padding: 0;
+    margin: 0;
+    color: #e2e2e2;
+  }
+
+  & p::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -0.2ch;
+    width: 100%;
+    height: 1px;
+
+    animation: $duration linear alternate forwards infinite background-carroussel;
+    background-size: 15ch 10ch;
+    background-image: linear-gradient(
+      -45deg,
+      $green 30%,
+      $yellow 30%,
+      $yellow 45%,
+      $blue 45%,
+      $blue 49%,
+      $white 49%,
+      $white 51%,
+      $blue 51%,
+      $blue 55%,
+      $yellow 55%,
+      $yellow 70%,
+      $green 70%
+    );
   }
 }
