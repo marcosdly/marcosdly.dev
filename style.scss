@@ -62,6 +62,7 @@ $colors: (
 
       & {
         transition: padding-left $duration $interpolation;
+        font-weight: normal;
       }
 
       &:hover {
@@ -78,36 +79,32 @@ $colors: (
     }
   }
 
-  @for $i from 1 through 6 {
-    $left-offset: calc(1ch * $i);
+  h1,
+  h2,
+  h3 {
+    & {
+      margin: 0.5rem 0;
+      vertical-align: middle;
+      position: relative;
 
-    h#{$i} {
-      & {
-        margin: 0.5rem 0;
-        vertical-align: middle;
-        position: relative;
-        font-weight: normal;
-        padding-left: $left-offset;
-        text-indent: 0.5ch;
-      }
+      text-indent: 0.5ch;
+    }
 
-      &,
-      & > a {
-        line-height: 1;
-        text-decoration: none;
-      }
+    &,
+    & > a {
+      line-height: 1;
+      text-decoration: none;
+    }
 
-      & > a {
-        display: block;
-      }
+    & > a {
+      display: block;
+    }
 
-      &::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        height: 100%;
-        width: $left-offset;
-      }
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      height: 100%;
     }
   }
 
@@ -118,6 +115,18 @@ $colors: (
 
     // compensate the fact that weight 600 is too little and weight 700 is too much
     letter-spacing: 1.5px;
+  }
+
+  @for $i from 1 through 3 {
+    $left-offset: calc(1ch * $i);
+
+    h#{$i} {
+      padding-left: $left-offset;
+
+      &::before {
+        width: $left-offset;
+      }
+    }
   }
 }
 
