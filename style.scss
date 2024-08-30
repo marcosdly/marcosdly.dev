@@ -179,10 +179,6 @@ body {
   & > main > article {
     @include headers;
     @include header-colors;
-
-    p {
-      margin-left: 1ch;
-    }
   }
 }
 
@@ -210,5 +206,25 @@ body {
 
   a:hover {
     text-decoration: underline;
+  }
+}
+
+p,
+ul {
+  margin-left: 1ch;
+}
+
+ul {
+  & {
+    list-style: none;
+    margin-top: 0.5ch;
+  }
+
+  li {
+    margin-left: 2ch;
+  }
+
+  li::before {
+    content: '> ';
   }
 }
