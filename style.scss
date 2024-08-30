@@ -289,3 +289,30 @@ $duration: 40s;
     );
   }
 }
+
+.the-thinker {
+  $small: 1.5rem;
+  $big: 200px;
+  $interpolation: cubic-bezier(0.27, 0.51, 0.26, 1.07);
+
+  & {
+    position: relative;
+    height: inherit;
+    margin-left: 1ch;
+  }
+
+  img {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: $small;
+    height: $small;
+    transition: all 150ms $interpolation;
+  }
+
+  img:hover {
+    width: $big;
+    height: $big;
+  }
+}
