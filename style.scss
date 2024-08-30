@@ -185,3 +185,30 @@ body {
     }
   }
 }
+
+#main-header,
+#main-footer {
+  & {
+    padding: 1ch 0;
+    text-align: center;
+  }
+
+  li {
+    list-style: none;
+    display: inline;
+  }
+
+  li:not(:first-of-type)::before {
+    content: '|';
+  }
+
+  a {
+    text-transform: lowercase;
+    text-decoration: none;
+    color: scale-color($foreground, $lightness: 30%);
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+}
