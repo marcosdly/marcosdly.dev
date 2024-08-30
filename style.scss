@@ -165,8 +165,8 @@ body {
 
 #content {
   & {
-    height: 100%;
     padding: 1rem;
+    margin: 0 auto;
 
     $reading-width: 768px; // same as 80ch
     width: $reading-width; // desktop
