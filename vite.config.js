@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import { ViteMinifyPlugin } from 'vite-plugin-minify'
+import { viteSingleFile } from 'vite-plugin-singlefile'
 
 const { assign } = Object
 
@@ -7,7 +8,13 @@ const { assign } = Object
 export default defineConfig(({ mode }) => {
   /** @type {import('vite').UserConfig} */
   const config = {
-    plugins: [ViteMinifyPlugin()],
+    plugins: [
+      ViteMinifyPlugin(),
+      viteSingleFile({
+        removeViteModuleLoader: true,
+        useRecommendedBuildConfig: false,
+      }),
+    ],
     build: {
       rollupOptions: {
         input: ['./index.html'],
