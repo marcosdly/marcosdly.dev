@@ -39,12 +39,12 @@ $colors: (
     $hex: map-get($colors, $color-name);
     $hex-light: scale-color($hex, $lightness: 30%);
 
-    .section.#{$name} h3 {
-      & > a {
+    .#{$name} h3 {
+      a {
         color: $hex;
       }
 
-      & > a:hover {
+      a:hover {
         color: $hex-light;
       }
 
@@ -107,12 +107,12 @@ $colors: (
     }
 
     &,
-    & > a {
+    a {
       line-height: 1;
       text-decoration: none;
     }
 
-    & > a {
+    a {
       display: block;
     }
 
@@ -176,10 +176,8 @@ body {
   }
 }
 
-#content {
-  @include headers;
-  @include header-colors;
-}
+@include headers;
+@include header-colors;
 
 .nav-container {
   & {
@@ -251,7 +249,7 @@ $duration: 40s;
     color: $foreground-light;
   }
 
-  & p {
+  p {
     position: relative;
     display: inline;
     padding: 0;
@@ -259,7 +257,7 @@ $duration: 40s;
     color: #e2e2e2;
   }
 
-  & p::after {
+  p::after {
     content: '';
     position: absolute;
     left: 0;
